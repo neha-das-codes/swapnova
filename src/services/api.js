@@ -3,7 +3,7 @@
  * Handles all API calls to FastAPI backend
  */
 // Backend URL
-const API_BASE_URL = 'http://127.0.0.1:8000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000/api';
 /**
  * Helper function to make API requests
  */
