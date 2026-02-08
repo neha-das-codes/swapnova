@@ -4,11 +4,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
-from .firebase import firebase_initialized  # ← CHANGED THIS LINE
+from .firebase import firebase_initialized
 from .routes import user_routes
 from .routes import match_routes
 from .routes import suggestion_routes 
 from .routes import admin_routes
+
 # Load environment variables
 load_dotenv()
 
@@ -22,7 +23,11 @@ app = FastAPI(
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:3000")],
+    allow_origins=[
+        "http://localhost:3000",  # Local development
+        "https://swapnova.web.app",  # Firebase hosting
+        "https://swapnova.firebaseapp.com",  # Firebase hosting alternate
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -59,3 +64,10 @@ def health_check():
         "status": "ok",
         "firebase": "connected" if firebase_initialized else "disconnected"
     }
+
+# ADD THIS AT THE VERY END:
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
