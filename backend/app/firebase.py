@@ -2,6 +2,7 @@
 import firebase_admin
 from firebase_admin import credentials, db
 import os
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -9,15 +10,25 @@ load_dotenv()
 # Initialize Firebase Admin
 def initialize_firebase():
     try:
-        cred_path = os.getenv("FIREBASE_CREDENTIALS_PATH")
+        # Check if running on Render (has FIREBASE_CREDENTIALS env var)
+        firebase_creds_str = os.getenv('FIREBASE_CREDENTIALS')
         database_url = os.getenv("FIREBASE_DATABASE_URL")
         
-        if not cred_path:
-            raise ValueError("FIREBASE_CREDENTIALS_PATH not found in .env")
-        if not database_url:
-            raise ValueError("FIREBASE_DATABASE_URL not found in .env")
+        if firebase_creds_str:
+            # Running on Render - use environment variable (JSON string)
+            print("🔧 Using Firebase credentials from environment variable...")
+            firebase_creds = json.loads(firebase_creds_str)
+            cred = credentials.Certificate(firebase_creds)
+        else:
+            # Running locally - use file path
+            print("🔧 Using Firebase credentials from file...")
+            cred_path = os.getenv("FIREBASE_CREDENTIALS_PATH", "firebase-credentials.json")
+            cred = credentials.Certificate(cred_path)
         
-        cred = credentials.Certificate(cred_path)
+        # Get database URL from environment or use default
+        if not database_url:
+            print("⚠️ Warning: FIREBASE_DATABASE_URL not set, using default")
+            database_url = "https://swapnova-default.firebaseio.com"  # Temporary - we'll set proper one
         
         # Initialize with Realtime Database URL
         firebase_admin.initialize_app(cred, {
@@ -25,6 +36,7 @@ def initialize_firebase():
         })
         
         print("✅ Firebase Realtime Database initialized successfully!")
+        print(f"✅ Database URL: {database_url}")
         return True
     
     except Exception as e:
