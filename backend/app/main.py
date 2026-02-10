@@ -21,17 +21,22 @@ app = FastAPI(
 )
 
 # CORS Configuration
+# Get frontend URL from environment variable
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",  # Local development
-        "https://swapnova.web.app",  # Firebase hosting
-        "https://swapnova.firebaseapp.com",  # Firebase hosting alternate
+        frontend_url,  # Production frontend (from environment variable)
+        "https://swapnova-22d39.web.app",  # Your actual Firebase URL
+        "https://swapnova-22d39.firebaseapp.com",  # Alternate Firebase URL
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Register user routes
 app.include_router(user_routes.router)
