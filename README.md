@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# SwapNova : AI-Based Skill Exchange Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application enabling two-way skill exchanges between users through AI-powered matching, real-time chat, and automated email notifications.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User Authentication:** Secure registration and login using email/password via Firebase Authentication.
+- **3-Step Profile Setup:** Users fill basic info, list skills offered and needed, and set exchange preferences.
+- **AI Matching Engine:** Matches users based on mutual skills, location, availability, and exchange mode with a compatibility percentage.
+- **Trending Skill Suggestions:** Platform-wide AI analysis of most in-demand skills shown via notification bell.
+- **Real-Time Chat:** Direct messaging between matched users using Firebase Realtime Database.
+- **Google Meet Integration:** Google Meet links are directly shared through emails for virtual skill sessions.
+- **Mark Complete & Feedback:** Both users mark exchange as complete, followed by a feedback and report form.
+- **Admin Dashboard:** Monitor all exchanges, feedbacks, and reports across the platform.
+- **Email Notifications:** Automated emails for connections, exchanges, and reports via EmailJS.
+- **Responsive Design:** Optimized for desktop and mobile devices.
 
-### `npm start`
+## Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Frontend:**
+- React.js
+- Tailwind CSS for styling
+- Leaflet Maps for location-based area selection
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Backend & Services:**
+- FastAPI (Python 3.10)
+- Scikit-learn for AI matching and AI skill suggestion engine
+- Firebase Authentication
+- Firebase Realtime Database
+- Firebase Storage
+- Firebase Hosting (Frontend)
+- Render (Backend)
+- EmailJS for email notifications
+- Google Meet for virtual skill sessions
 
-### `npm test`
+## Live Demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+URL: https://swapnova-22d39.web.app
 
-### `npm run build`
+## Author
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Neha Das
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://github.com/neha-das-codes/swapnova
